@@ -12,6 +12,12 @@ import {
 } from "@tremor/react";
 
 function Header() {
+  const SORT_BY_MAP = {
+    r: "Default",
+    rv: "By Review",
+    p: "By Price (low to high)",
+    pd: "By Price (high to low)",
+  };
   return (
     <header>
       <Link href="/">
@@ -47,6 +53,14 @@ function Header() {
                 </SearchSelectItem>
               ))}
             </SearchSelect>
+
+            <Select>
+              {Object.entries(SORT_BY_MAP).map(([key, value]) => (
+                <SelectItem key={key} value={key}>
+                  {value}
+                </SelectItem>
+              ))}
+            </Select>
           </div>
         </form>
       </div>
