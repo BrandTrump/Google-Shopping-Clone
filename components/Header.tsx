@@ -54,13 +54,21 @@ function Header() {
               ))}
             </SearchSelect>
 
-            <Select>
+            <Select className="min-w-4" placeholder="Sort">
               {Object.entries(SORT_BY_MAP).map(([key, value]) => (
                 <SelectItem key={key} value={key}>
                   {value}
                 </SelectItem>
               ))}
             </Select>
+
+            <SearchSelect className="min-w-4" placeholder="Min Price...">
+              {["", "100", "250", "500", "750", "900", "1000+"].map((_, i) => (
+                <SearchSelectItem key={i} value={_.toString()}>
+                  {i === 0 ? "No Minimum" : `$${_.toString()}`}
+                </SearchSelectItem>
+              ))}
+            </SearchSelect>
           </div>
         </form>
       </div>
