@@ -8,7 +8,7 @@ export type SearchParams = {
 };
 
 type PageResult = {
-  content: Context;
+  content: Content;
   created_at: string;
   updated_at: string;
   page: number;
@@ -18,10 +18,10 @@ type PageResult = {
   parser_type: string;
 };
 
-type Contnet = {
+type Content = {
   url: string;
   page: number;
-  results: ResultOptions;
+  results: Results;
   last_visible_page: number;
   parse_status_code: number;
 };
