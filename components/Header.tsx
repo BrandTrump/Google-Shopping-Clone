@@ -3,6 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import SearchButton from "./SearchButton";
+import {
+  SearchSelect,
+  SearchSelectItem,
+  Select,
+  SelectItem,
+} from "@tremor/react";
 
 function Header() {
   return (
@@ -29,6 +36,17 @@ function Header() {
                 className="outline-none flex-1"
               />
             </div>
+            <SearchButton />
+          </div>
+
+          <div>
+            <SearchSelect className="min-w-4" placeholder="# of pages">
+              {[...Array(100)].map((_, i) => (
+                <SearchSelectItem key={i} value={(i + 1).toString()}>
+                  {(i + 1).toString()} pages
+                </SearchSelectItem>
+              ))}
+            </SearchSelect>
           </div>
         </form>
       </div>
