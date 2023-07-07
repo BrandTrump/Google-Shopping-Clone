@@ -1,4 +1,6 @@
-import { SearchParams } from "@/typings";
+import ResultsList from "@/components/ResultsList";
+import { getFetchUrl } from "@/lib/getFetchUrl";
+import { PageResult, SearchParams } from "@/typings";
 import { redirect } from "next/navigation";
 
 type Props = {
@@ -8,14 +10,24 @@ type Props = {
   };
 };
 
-function SearchPage({ searchParams, params: { term } }: Props) {
+async function SearchPage({ searchParams, params: { term } }: Props) {
   if (!term) {
     redirect("/");
   }
 
   // fetch from API...
+  const response = await fetch(getFetchUrl("api/search"), {
+    method: "POST",
+    body: JSON.stringify({ searchTerm: term, ...searchParams }),
+  });
 
-  return <div>Welcome to the search results page</div>;
+  const results = (await response.json()) as PageResult[];
+
+  return (
+    <div>
+      <ResultsList results={results} term={term} />
+    </div>
+  );
 }
 
 export default SearchPage;
